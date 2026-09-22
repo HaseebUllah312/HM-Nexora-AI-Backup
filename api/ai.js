@@ -62,7 +62,10 @@ export default async function handler(req, res) {
         try {
           const gRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${currentKey}`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+              "Content-Type": "application/json",
+              "x-goog-api-key": currentKey
+            },
             body: JSON.stringify({
               contents: [{ parts: [{ text: `${systemPrompt}\n\n${userPrompt}` }] }],
               generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
