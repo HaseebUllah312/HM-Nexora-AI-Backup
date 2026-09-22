@@ -60,7 +60,7 @@ export default async function handler(req, res) {
       for (let attempt = 0; attempt < Math.min(geminiKeyPool.length, 5); attempt++) {
         const currentKey = geminiKeyPool[(startIdx + attempt) % geminiKeyPool.length];
         try {
-          const gRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${currentKey}`, {
+          const gRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${currentKey}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
