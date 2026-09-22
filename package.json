@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "High-Availability 15-Key Gemini & Groq AI Backup Gateway for HM Nexora",
   "main": "api/ai.js",
+  "type": "module",
   "scripts": {
     "dev": "vercel dev",
     "deploy": "vercel --prod"
