@@ -41,27 +41,27 @@ export default async function handler(request) {
     const rawKeys = [
       process.env.GEMINI_API_KEYS,
       process.env.GEMINI_API_KEY,
-      process.env.GOOGLE_AI_KEY
+      process.env.GOOGLE_AI_KEY,
+      process.env.GEMINI_API_KEY_1,
+      process.env.GEMINI_API_KEY_2,
+      process.env.GEMINI_API_KEY_3,
+      process.env.GEMINI_API_KEY_4,
+      process.env.GEMINI_API_KEY_5,
+      process.env.GEMINI_API_KEY_6,
+      process.env.GEMINI_API_KEY_7,
+      process.env.GEMINI_API_KEY_8,
+      process.env.GEMINI_API_KEY_9,
+      process.env.GEMINI_API_KEY_10,
+      process.env.GEMINI_API_KEY_11,
+      process.env.GEMINI_API_KEY_12,
+      process.env.GEMINI_API_KEY_13,
+      process.env.GEMINI_API_KEY_14,
+      process.env.GEMINI_API_KEY_15
     ].filter(Boolean).join(",");
 
     const geminiKeyPool = rawKeys.split(",")
       .map(k => k.trim())
       .filter(k => k.length > 15);
-
-    // Collect GEMINI_API_KEY_1 through GEMINI_API_KEY_25
-    for (let i = 1; i <= 25; i++) {
-      const k = process.env[`GEMINI_API_KEY_${i}`];
-      if (k && typeof k === "string" && k.trim().length > 15 && !geminiKeyPool.includes(k.trim())) {
-        geminiKeyPool.push(k.trim());
-      }
-    }
-
-    // Dynamic scan of process.env
-    for (const [keyName, val] of Object.entries(process.env || {})) {
-      if (/^GEMINI/i.test(keyName) && typeof val === "string" && val.trim().length > 15 && !geminiKeyPool.includes(val.trim())) {
-        geminiKeyPool.push(val.trim());
-      }
-    }
 
     const formattedOptions = options.map((o, i) => `${String.fromCharCode(65 + i)}) ${o}`).join("\n");
     const systemPrompt = "You are a senior Virtual University (VU) Professor & Academic Expert. Solve this MCQ question with 100% precision based on official VU course handouts and lecture material. Identify the exact correct option and give a clear 2-sentence explanation.";
